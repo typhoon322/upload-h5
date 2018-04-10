@@ -1,13 +1,17 @@
 <template>
   <div id="app">
-    <img src="./assets/logo.png">
     <router-view/>
+    <Popup />
   </div>
 </template>
 
 <script>
+import Popup from './components/popup/Popup';
 export default {
-  name: 'App'
+  name: 'App',
+  components: {
+    Popup,
+  },
 }
 </script>
 

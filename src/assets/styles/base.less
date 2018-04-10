@@ -1,0 +1,154 @@
+@mainColor: #5485EB;
+@mainOrange: #FF6D47;
+@mainRed: #F96B5F;
+@mainTextColor: #333;
+@secondaryTextColor: #666;
+@secondaryTitleColor: #999;
+@borderColor: #D9E2EF;
+@logoYellow: #f2bd42;
+@successGreen: #1ABB0E;
+@mainGreen: #34A853;
+
+// 上下左右居中
+.center() {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+// flex布局居中
+.flexCenter() {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+// flex
+.flex(@num) {
+  flex: @num;
+}
+// 图片占位
+// @proportion height/width
+.imgWrap(@proportion) {
+  position: relative;
+  overflow: hidden;
+  &:after {
+    content: '';
+    display: block;
+    width: 100%;
+    padding-top: percentage(@proportion);
+  }
+  img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+  }
+}
+// 左箭头
+// @width 宽度
+// @borderWidth 箭头边框宽度
+// @color 箭头颜色
+.arrowLeft(@width, @borderWidth, @color) {
+  position: relative;
+  &:after {
+    content: '';
+    .center();
+    margin-top: -@width / 2;
+    width: @width;
+    height: @width;
+    border-left: @borderWidth solid @color;
+    border-top: @borderWidth solid @color;
+    transform: rotate(-45deg);
+  }
+}
+// 右箭头
+.arrowRight(@width, @borderWidth, @color) {
+  .arrowLeft(@width, @borderWidth, @color);
+  &:after {
+    transform: rotate(135deg);
+  }
+}
+// 下箭头
+.arrowBottom(@width, @borderWidth, @color) {
+  .arrowLeft(@width, @borderWidth, @color);
+  &:after {
+    transform: rotate(-135deg);
+  }
+}
+// 上箭头
+.arrowTop(@width, @borderWidth, @color) {
+  .arrowLeft(@width, @borderWidth, @color);
+  &:after {
+    transform: rotate(45deg);
+  }
+}
+// 绝对一像素下边框
+.borderBottom1px(@color) {
+  position: relative;
+  &:after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 1px;
+    transform: scaleY(.5);
+    background-color: @color;
+  }
+}
+// 绝对一像素上边框
+.borderTop1px(@color) {
+  position: relative;
+  &:before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 1px;
+    transform: scaleY(.5);
+    background-color: @color;
+  }
+}
+// 绝对一像素右边框
+.borderRight1px(@color, @width, @bottom, @right) {
+  position: relative;
+  &:after {
+    content: '';
+    position: absolute;
+    bottom: @bottom;
+    right: @right;
+    width: @width;
+    height: 1px;
+    transform: scaleY(.5);
+    transform: rotate(90deg);
+    background-color: @color;
+  }
+}
+// 文字溢出隐藏
+.ellipsis() {
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+}
+.btn() {
+  flex: 1;
+  margin-right: 15px;
+  height: 48px;
+  line-height: 48px;
+  border: 1px solid @mainColor;
+  border-radius: 6px;
+  background-color: @mainColor;
+  text-align: center;
+  color: #fff;
+  font-size: 16px;
+  &:last-child {
+    margin-right: 0;
+  }
+  &.white {
+    background-color: #fff;
+    color: @mainColor;
+  }
+}
+

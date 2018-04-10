@@ -1,0 +1,80 @@
+@import './base.less';
+
+.mask {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0,0,0,.5);
+  z-index: 99;
+  &.transparent {
+    background-color: transparent;
+  }
+}
+.popup {
+  .center();
+  padding: 20px;
+  border-radius: 4px;
+  background-color: #fff;
+  overflow: hidden;
+  &.dialog {
+    width: percentage(320/375);
+    max-width: 320px;
+    padding: 0;
+    text-align: center;
+    h4 {
+      padding: 20px;
+      color: @mainTextColor;
+      font-size: 14px;
+      font-weight: normal;
+      word-break: break-all;
+    }
+    p {
+      padding: 0 30px 30px;
+      font-size: 14px;
+      line-height: 24px;
+      word-break: break-all;
+      color: @secondaryTextColor,
+    }
+    .btnWrap {
+      display: flex;
+      justify-content: center;
+      .borderBottom1px(#c0c0c0);
+      &:after {
+        bottom: auto;
+        top: 0;
+      }
+      span {
+        flex: 1;
+        height: 50px;
+        line-height: 50px;
+        border-right: 1px solid #c0c0c0;
+        font-size: 16px;
+        color: @mainColor;
+        box-sizing: border-box;
+        &:last-child {
+          border-right: 0;
+        }
+      }
+    }
+  }
+  &.tip, &.loading {
+    margin-right: -50%;
+    font-size: 14px;
+    background-color: rgba(0,0,0,.5);
+    color: #fff;
+  }
+  .close {
+    position: absolute;
+    right: 0;
+    top: 0;
+    padding: 5px;
+    font-size: 20px;
+    color: #333;
+    cursor: pointer;
+    &:hover {
+      color: @mainColor;
+    }
+  }
+}

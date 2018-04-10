@@ -1,0 +1,84 @@
+@import './base.less';
+@import './popup.less';
+
+.flex1 {
+  flex: 1;
+}
+.flex2 {
+  flex: 2;
+}
+.flex3 {
+  flex: 3;
+}
+.flex4 {
+  flex: 4;
+}
+.flex5 {
+  flex: 5;
+}
+html {
+  height: 100%;
+}
+body {
+  height: 100%;
+  background-color: #f5f5f5;
+  max-width: 640px;
+  min-width: 320px;
+  margin: 0 auto;
+}
+#app {
+  box-sizing: border-box;
+  overflow-x: hidden;
+}
+// trasnition fade 样式
+.fade-enter-active, .fade-leave-active {
+  transition: opacity .2s;
+}
+.fade-enter, .fade-leave-to{
+  opacity: 0;
+}
+// button
+.btn_wrap {
+  display: flex;
+  .btn {
+    .btn();
+  }
+}
+.loading_animate {
+  padding-top: 100px;
+  text-align: center;
+  img {
+    width: 150px;
+  }
+}
+body{
+  .picker .picker-panel .picker-choose {
+    height: 40px;
+    border-bottom: 1px solid @borderColor;
+    color: #999;
+  }
+  .picker .picker-panel .picker-choose .cancel, .picker .picker-panel .picker-choose .confirm {
+    top: 0;
+    font-size: 14px;
+    color: @mainColor;
+  }
+  .picker .picker-panel .picker-choose .confirm {
+    color: @mainColor;
+  }
+  .picker .picker-panel .picker-choose .picker-title {
+    line-height: 40px;
+    font-size: 16px;
+    font-weight: normal;
+    color: @mainColor;
+  }
+  .picker .picker-panel .wheel-wrapper .wheel .wheel-scroll .wheel-item {
+    font-size: 16px;
+    color: @secondaryTextColor;
+  }
+  .picker .picker-panel .picker-content .mask-top:after, .picker .picker-panel .picker-content .mask-top:before,.picker .picker-panel .picker-content .mask-bottom:after, .picker .picker-panel .picker-content .mask-bottom:before {
+    border-color: @borderColor;
+  }
+  .picker .picker-mask.show{
+    background:rgba(0,0,0,0.2)
+  }
+}
