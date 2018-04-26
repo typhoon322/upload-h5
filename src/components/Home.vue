@@ -11,10 +11,9 @@
 <script>
 	export default {
 		name: 'Home',
-
 		methods: {
 			enter() {
-				this.$router.push('/upload');
+				this.$router.push('/panda/photoList');
 			},
 		},
 	}
@@ -27,6 +26,7 @@
   align-items: center;
   justify-content: center;
 	.enter {
+		cursor: pointer;
 		width: 200px;
 		height: 48px;
 		line-height: 48px;

@@ -54,15 +54,19 @@ export default {
 	    }
 	    // this.fetchUpload(file);
 	    this.doGet(file).then((res) => {
+						console.log(res);
 		        this.fetchUpload(file,res.token);
 		      });
-  	},
+		},
+		
   	fetchUpload(file,token) {
-  		console.log('fprepare data file:'+ file.name);
-  		console.log('prepare data token:'+ token);
-      const key = file.name;
+			console.log('fprepare data file:');
+			console.log(file);
+			console.log('prepare data token:'+ token);
+			var timeStamp = new Date().getTime();
+			var key = file.name;
       const putExtra = {
-      	fname: "",
+      	fname: "IMG_"+timeStamp,
       	params: {},
       	mimeType: null
       };
@@ -71,8 +75,9 @@ export default {
         region: qiniu.region.z2
       };
       var requestUrl = qiniu.getUploadUrl(config);
-      console.log('requestUrl:'+requestUrl);
-      var observable = qiniu.upload(file,key,token,putExtra,config);
+      console.log('requestUrl:');
+      console.log(requestUrl);
+			var observable = qiniu.upload(file,key,token,putExtra,config);
       var observer = {
         next(res){
         	console.log(res.total.percent + '% 已上传：'+res.total.loaded);
@@ -81,12 +86,14 @@ export default {
         	console.log(''+err.code+" : "+ err.reqId+" - "+err.message);
         },
         complete(res){
-        	console.log('complete:'+res.toString());
+					console.log(res);
+        	console.log('complete');
         }
       }
       console.log('开始上传。。。');
       var subscription = observable.subscribe(observer);
-			console.log('subscription = '+subscription);
+			console.log('subscription = ');
+			console.log(subscription);
     },
     timerPromisefy(delay) {
       return new Promise((resolve) => {
@@ -99,7 +106,7 @@ export default {
       return Promise.race([
         this.timerPromisefy(15),
         new Promise((resolve, reject) => {
-          fetch('http://192.168.1.107:3000/auth/H5hhhh', {
+          fetch('http://192.168.1.107:3007/auth', {
             method: 'GET',
             headers: {
               ...requestHeaders,
