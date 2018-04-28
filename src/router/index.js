@@ -2,6 +2,7 @@ import Vue from 'vue'
 import Router from 'vue-router'
 import HelloWorld from '@/components/HelloWorld'
 import Home from '@/components/Home'
+import Login from '@/components/Login'
 import Upload from '@/components/UploadPage'
 import AddPhotos from '@/components/AddPhotos'
 import PhotoList from '@/components/PhotoList'
@@ -15,6 +16,11 @@ export default new Router({
       path: '/panda',
       name: 'Home',
       component: Home
+    },
+    {
+      path: '/panda/login',
+      name: 'Login',
+      component: Login
     },
     {
       path: '/panda/upload',

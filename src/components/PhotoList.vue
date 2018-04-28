@@ -71,6 +71,9 @@ export default {
             name: 'tip',
             data: res.msg,
           });
+          if(res.code === -1){
+            this.$router.replace('/panda/login');
+          }
         }
       });
     },
