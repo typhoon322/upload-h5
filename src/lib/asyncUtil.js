@@ -4,7 +4,7 @@ import { getToken } from './getLoginInfo';
 
 // 3.0
 // export const baseUrl = 'http://111.230.249.146:3020';
-export const baseUrl = 'http://192.168.1.109:3020';
+export const baseUrl = 'http://192.168.2.97:3020';
 
 const timeoutErr = {
   code: 1,
@@ -34,106 +34,130 @@ export function doPostForm(path, formData) {
     timerPromisefy(timeOut),
     new Promise((resolve, reject) => {
       fetch(`${baseUrl}${path}`, {
-        method: 'POST',
+        method: "POST",
         headers: {
-          'Accept': 'application/json',
+          Accept: "application/json",
           // 'Content-Type': 'application/json',
           // 'Content-Type': 'multipart/form-data',
-          ...(getToken() && { 'X-User-Token': getToken() }),
+          ...(getToken() && { "X-Access-Token": getToken() })
         },
         // credentials: 'include',
-        body: formData,
-      }).then(response => response.json(),
-      ).then((json) => {
-        resolve(json);
-      }).catch((err) => {
-        reject(catchErr);
-      });
+        body: formData
+      })
+        .then(response => response.json())
+        .then(json => {
+          resolve(json);
+        })
+        .catch(err => {
+          reject(catchErr);
+        });
     }),
   ]).then(value => value).catch(err => err);
 }
 export function doPost(path, data) {
+  const token = getToken().token;
+  console.log("doGet=> token: ");
+  console.log(token);
   return Promise.race([
     timerPromisefy(timeOut),
     new Promise((resolve, reject) => {
       fetch(`${baseUrl}${path}`, {
-        method: 'POST',
+        method: "POST",
         headers: {
           ...requestHeaders,
-          ...(getToken() && { 'X-User-Token': getToken() }),
+          ...(token && { "x-access-token": token })
         },
         // credentials: 'include',
-        body: JSON.stringify(data),
-      }).then(response => response.json(),
-      ).then((json) => {
-        resolve(json);
-      }).catch((err) => {
-        reject(catchErr);
-      });
+        body: JSON.stringify(data)
+      })
+        .then(response => response.json())
+        .then(json => {
+          resolve(json);
+        })
+        .catch(err => {
+          reject(catchErr);
+        });
     }),
   ]).then(value => value).catch(err => err);
 }
 
 export function doPut(path, data) {
+  const token = getToken().token;
+  console.log("doGet=> token: ");
+  console.log(token);
   return Promise.race([
     timerPromisefy(timeOut),
     new Promise((resolve, reject) => {
       fetch(`${baseUrl}${path}`, {
-        method: 'PUT',
+        method: "PUT",
         headers: {
           ...requestHeaders,
-          ...(getToken() && { 'X-User-Token': getToken() }),
+          ...(token && { "x-access-token": token })
         },
         // credentials: 'include',
-        body: JSON.stringify(data),
-      }).then(response => response.json(),
-      ).then((json) => {
-        resolve(json);
-      }).catch((err) => {
-        reject(catchErr);
-      });
+        body: JSON.stringify(data)
+      })
+        .then(response => response.json())
+        .then(json => {
+          resolve(json);
+        })
+        .catch(err => {
+          reject(catchErr);
+        });
     }),
   ]).then(value => value).catch(err => err);
 }
 
 export function doGet(path) {
+  const token = getToken().token;
+  console.log('doGet=> token: ');
+  console.log(token);
   return Promise.race([
     timerPromisefy(timeOut),
+
+
     new Promise((resolve, reject) => {
       fetch(`${baseUrl}${path}`, {
-        method: 'GET',
+        method: "GET",
         headers: {
           ...requestHeaders,
-          ...(getToken() && { 'X-User-Token': getToken() }),
-        },
+          ...(token && { "x-access-token": token })
+        }
         // credentials: 'include',
-      }).then(response => response.json(),
-      ).then((json) => {
-        resolve(json);
-      }).catch((err) => {
-        reject(catchErr);
-      });
+      })
+        .then(response => response.json())
+        .then(json => {
+          resolve(json);
+        })
+        .catch(err => {
+          reject(catchErr);
+        });
     }),
   ]).then(value => value).catch(err => err);
 }
 
 export function doDelete(path) {
+  const token = getToken().token;
+  console.log("doGet=> token: ");
+  console.log(token);
   return Promise.race([
     timerPromisefy(timeOut),
     new Promise((resolve, reject) => {
       fetch(`${baseUrl}${path}`, {
-        method: 'DELETE',
+        method: "DELETE",
         headers: {
           ...requestHeaders,
-          ...(getToken() && { 'X-User-Token': getToken() }),
-        },
+          ...(token && { "x-access-token": token })
+        }
         // credentials: 'include',
-      }).then(response => response.json(),
-      ).then((json) => {
-        resolve(json);
-      }).catch((err) => {
-        reject(catchErr);
-      });
+      })
+        .then(response => response.json())
+        .then(json => {
+          resolve(json);
+        })
+        .catch(err => {
+          reject(catchErr);
+        });
     }),
   ]).then(value => value).catch(err => err);
 }

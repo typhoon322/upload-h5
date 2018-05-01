@@ -43,6 +43,7 @@ export default{
           url: '',
           title: '',
           desc: '',
+          status: { isShow: false},
           tags: '',
         },
         rules: {
@@ -134,7 +135,7 @@ export default{
       });
     },
 
-  
+
     validateUrl(url) {
       return /http(s)?:\/\/([\w-]+\.)+[\w-]+(\/[\w- ./?%&=]*)?/.test(url);
     }

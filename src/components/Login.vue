@@ -21,8 +21,8 @@ export default{
     data() {
       return {
         form_data: {
-          userName: '',
-          password: '',
+          userName: 'pandamaster',
+          password: 'zhimakaimen',
         },
         rules: {
           userName: [
@@ -57,6 +57,7 @@ export default{
               if(res.code == 0){
                 this.$router.replace('/panda');
                 localStorage.setItem("token",JSON.stringify(res.data));
+                console.log(res.data);
                 const t = JSON.parse(localStorage.getItem("token"));
                 console.log(t);
               }

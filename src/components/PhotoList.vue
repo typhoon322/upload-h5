@@ -3,7 +3,7 @@
     <div style="text-align: left;">
       <router-link :to="'/panda/add'"><el-button type="primary">新增</el-button></router-link>
     </div>
-    <el-table 
+    <el-table
       :data="photos"
       border
       stripe
@@ -29,6 +29,13 @@
           <img :src="`${scope.row.url}?imageView2/2/w/150/h/150/q/75|imageslim`" alt="" style="width: 150px; height: 150px;">
         </template>
       </el-table-column>
+      <el-table-column label="状态">
+        <template slot-scope="scope">
+          <el-button
+            size="mini"
+            @click="showOrHide(scope.$index, scope.row)">{{(scope.row.status) ? '下线' : '上线'}}</el-button>
+        </template>
+      </el-table-column>
       <el-table-column label="操作" width="150px">
         <template slot-scope="scope">
           <el-button
@@ -45,7 +52,7 @@
 </template>
 
 <script>
-import { doGet,doDelete } from '../lib/asyncUtil';
+import { doGet, doPut, doDelete } from '../lib/asyncUtil';
 
 export default {
   data() {
@@ -99,6 +106,24 @@ export default {
         }
       });
     },
+    showOrHide(index, photo){
+      const path = `/photo/${photo._id}`;
+      this.loading = true;
+      photo.isShow = !photo.isShow;
+      doPut(path, photo).then(
+        (res) => {
+          this.loading = false;
+          if(res.code == 0){
+            photo = res.data;
+          }else{
+              this.$bus.$emit('showPopup', {
+              name: 'tip',
+              data: res.msg,
+            });
+          }
+        },
+      );
+    }
   },
 }
 </script>
