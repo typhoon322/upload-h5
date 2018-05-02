@@ -10,37 +10,42 @@ import PhotoList from '@/components/PhotoList'
 Vue.use(Router)
 
 export default new Router({
-	mode: 'history',
+  mode: "history",
   routes: [
     {
-      path: '/panda',
-      name: 'Home',
+      path: "/",
+      name: "Home",
       component: Home
     },
     {
-      path: '/panda/login',
-      name: 'Login',
+      path: "/panda",
+      name: "Home",
+      component: Home
+    },
+    {
+      path: "/panda/login",
+      name: "Login",
       component: Login
     },
     {
-      path: '/panda/upload',
-      name: 'Upload',
+      path: "/panda/upload",
+      name: "Upload",
       component: Upload
     },
     {
-      path: '/panda/add',
-      name: 'Add',
+      path: "/panda/add",
+      name: "Add",
       component: AddPhotos
     },
     {
-      path: '/panda/editPhoto/:id',
-      name: 'Edit',
+      path: "/panda/editPhoto/:id",
+      name: "Edit",
       component: AddPhotos
     },
     {
-      path: '/panda/photoList',
-      name: 'PhotoList',
+      path: "/panda/photoList",
+      name: "PhotoList",
       component: PhotoList
-    },
+    }
   ]
-})
+});

@@ -1,7 +1,7 @@
 {
-  "name": "upload-h5",
+  "name": "monster",
   "version": "1.0.0",
-  "description": "uploader for qiniu",
+  "description": "panda monster",
   "author": "YanX <typhoon322@qq.com>",
   "private": true,
   "scripts": {
