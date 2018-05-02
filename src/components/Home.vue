@@ -1,9 +1,9 @@
 <template>
 	<div class="container">
-		<img src="../assets/images/logo.png">
-		<p class="greeting">Welcome XXX</p>
+		<img src="../assets/images/avatar.jpg" style="width: 200px;">
+		<p class="greeting">Welcome 熊喵伯🐼</p>
 		<div class="wrapper">
-			<div class="enter" @click="enter">ENTER</div>
+			<div class="enter" @click="enter">掌管熊猫洞</div>
 		</div>
 	</div>
 </template>
