@@ -3,8 +3,8 @@
 import { getToken } from './getLoginInfo';
 
 // 3.0
-// export const baseUrl = 'http://111.230.249.146:3020';
-export const baseUrl = 'http://192.168.2.97:3020';
+export const baseUrl = 'http://111.230.249.146:3027';
+// export const baseUrl = 'http://192.168.1.100:3027';
 
 const timeoutErr = {
   code: 1,
@@ -29,33 +29,8 @@ function timerPromisefy(delay) {
   });
 }
 
-export function doPostForm(path, formData) {
-  return Promise.race([
-    timerPromisefy(timeOut),
-    new Promise((resolve, reject) => {
-      fetch(`${baseUrl}${path}`, {
-        method: "POST",
-        headers: {
-          Accept: "application/json",
-          // 'Content-Type': 'application/json',
-          // 'Content-Type': 'multipart/form-data',
-          ...(getToken() && { "X-Access-Token": getToken() })
-        },
-        // credentials: 'include',
-        body: formData
-      })
-        .then(response => response.json())
-        .then(json => {
-          resolve(json);
-        })
-        .catch(err => {
-          reject(catchErr);
-        });
-    }),
-  ]).then(value => value).catch(err => err);
-}
 export function doPost(path, data) {
-  const token = getToken().token;
+  const token = getToken();
   console.log("doGet=> token: ");
   console.log(token);
   return Promise.race([
@@ -82,7 +57,7 @@ export function doPost(path, data) {
 }
 
 export function doPut(path, data) {
-  const token = getToken().token;
+  const token = getToken();
   console.log("doGet=> token: ");
   console.log(token);
   return Promise.race([
@@ -109,7 +84,7 @@ export function doPut(path, data) {
 }
 
 export function doGet(path) {
-  const token = getToken().token;
+  const token = getToken();
   console.log('doGet=> token: ');
   console.log(token);
   return Promise.race([
@@ -137,7 +112,7 @@ export function doGet(path) {
 }
 
 export function doDelete(path) {
-  const token = getToken().token;
+  const token = getToken();
   console.log("doGet=> token: ");
   console.log(token);
   return Promise.race([

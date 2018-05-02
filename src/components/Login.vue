@@ -56,10 +56,10 @@ export default{
                 });
               if(res.code == 0){
                 this.$router.replace('/panda');
-                localStorage.setItem("token",JSON.stringify(res.data));
-                console.log(res.data);
-                const t = JSON.parse(localStorage.getItem("token"));
-                console.log(t);
+                const content = JSON.stringify(res.data.token);
+                localStorage.setItem("token",content);   
+                console.log('save token in local storage');
+                console.log(content);
               }
             },
           );

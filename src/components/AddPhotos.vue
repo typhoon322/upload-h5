@@ -15,10 +15,14 @@
         </el-form-item>
       <el-form-item>
         <!-- <el-button @click="addItem">新增</el-button> -->
+        <div style="display: inline; margin-right: 15px;">
+          <router-link :to="'/panda/photoList'" :replace=true ><el-button>返回</el-button></router-link>
+        </div>
         <el-button v-if="id" type="primary" @click="modifyForm('form_data')">修改</el-button>
         <el-button v-else type="primary" @click="submitForm('form_data')">提交</el-button>
       </el-form-item>
     </el-form>
+    
   </div>
 </template>
 <script>
@@ -43,7 +47,7 @@ export default{
           url: '',
           title: '',
           desc: '',
-          status: { isShow: false},
+          isShow: false,
           tags: '',
         },
         rules: {
@@ -93,7 +97,7 @@ export default{
               }else{
                  this.$bus.$emit('showPopup', {
                   name: 'tip',
-                  data: res.msg,
+                  data: '网络连接失败',
                 });
               }
             },

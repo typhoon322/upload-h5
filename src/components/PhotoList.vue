@@ -6,8 +6,7 @@
     <el-table
       :data="photos"
       border
-      stripe
-      highlight-current-row
+      :row-class-name="tableRowClassName"
       style="width: 100%; margin-top: 20px;">
       <el-table-column label="标题">
         <template slot-scope="scope">
@@ -31,13 +30,22 @@
       </el-table-column>
       <el-table-column label="状态">
         <template slot-scope="scope">
-          <el-button
-            size="mini"
-            @click="showOrHide(scope.$index, scope.row)">{{(scope.row.status) ? '下线' : '上线'}}</el-button>
+          <span v-if="scope.row.isShow">正常展示</span>
+          <span v-else>已隐藏</span>
         </template>
       </el-table-column>
-      <el-table-column label="操作" width="150px">
+      <el-table-column label="操作" width="270px">
         <template slot-scope="scope">
+          <el-button
+            v-if="scope.row.isShow"
+            size="mini"
+            type="warning"
+            @click="showOrHide(scope.$index, scope.row, false)">下线</el-button>
+          <el-button
+            v-else
+            size="mini"
+            type="success"
+            @click="showOrHide(scope.$index, scope.row, true)">上线</el-button>
           <el-button
             size="mini"
             @click="handleEdit(scope.$index, scope.row)">编辑</el-button>
@@ -106,15 +114,22 @@ export default {
         }
       });
     },
-    showOrHide(index, photo){
+    showOrHide(index, photo, show){
       const path = `/photo/${photo._id}`;
       this.loading = true;
-      photo.isShow = !photo.isShow;
-      doPut(path, photo).then(
+      const update = {
+        isShow: show,
+        url: photo.url,
+        title: photo.title,
+        desc: photo.desc,
+        tags: photo.tags,
+      };
+      doPut(path, update).then(
         (res) => {
           this.loading = false;
           if(res.code == 0){
-            photo = res.data;
+            console.log("res.data: ", res.data);
+            photo.isShow = show;
           }else{
               this.$bus.$emit('showPopup', {
               name: 'tip',
@@ -123,6 +138,9 @@ export default {
           }
         },
       );
+    },
+    tableRowClassName({row, rowIndex}){
+      return row.isShow ? '' : 'disable';
     }
   },
 }
@@ -132,6 +150,9 @@ export default {
 .container {
   margin-top: 20px;
   width: 100%;
+  .el-table .disable{
+    background: #E4E7ED;
+  }
 }
 </style>
 
