@@ -3,8 +3,9 @@
 		<img src="../assets/images/avatar.jpg" style="width: 200px;">
 		<p class="greeting">Welcome 熊喵伯🐼</p>
 		<div class="wrapper">
-			<div class="enter" @click="enter">掌管熊猫洞</div>
+			<div class="enter" @click="enter">进洞</div>
 		</div>
+		<div class="icp">粤ICP备18018706号-1</div>
 	</div>
 </template>
 
@@ -13,7 +14,7 @@
 		name: 'Home',
 		methods: {
 			enter() {
-				this.$router.push('/panda/photoList');
+				// this.$router.push('/panda/photoList');
 			},
 		},
 	}
@@ -34,6 +35,12 @@
 		color: #fff;
 		background-color: #88aaff;
 		border-radius: 4px;
+	}
+	.icp {
+		line-height: 48px;
+		text-align: center;
+		color: #333;
+		margin-top: 50px;
 	}
 }
 </style>

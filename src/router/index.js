@@ -5,6 +5,7 @@ import Home from '@/components/Home'
 import Login from '@/components/Login'
 import Upload from '@/components/UploadPage'
 import AddPhotos from '@/components/AddPhotos'
+import NewProject from '@/components/NewProject'
 import PhotoList from '@/components/PhotoList'
 
 Vue.use(Router)
@@ -46,6 +47,11 @@ export default new Router({
       path: "/panda/photoList",
       name: "PhotoList",
       component: PhotoList
+    },
+    {
+      path: "/panda/newProject",
+      name: "NewProject",
+      component: NewProject,
     }
   ]
 });
